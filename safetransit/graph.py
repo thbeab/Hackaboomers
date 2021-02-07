@@ -4,6 +4,11 @@ class Graph(object):
     adjacency_matrix = []
     transitlines_matrix = []
 
+    def __init__(self, vertices, adjacency_matrix, transitlines_matrix):
+        self.vertices = vertices
+        self.adjacency_matrix = adjacency_matrix
+        self.transitlines_matrix = transitlines_matrix
+
     def add_vertex(self, v):
         if(v in self.vertices):
             print("Vertex already exists")
