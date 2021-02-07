@@ -4,20 +4,27 @@ class Route(object):
     trips = []
     stops = []
 
-    def __init__(self, routeID, routeName, trip, stop):
+    def __init__(self, routeID, routeName, trips, stops):
         self.routeID = routeID
         self.routeName = routeName
+        self.trips = trips
+        self.stops = stops
+    def addTrip(self, trip):
         self.trips.append(trip)
+    def addStop(self, stop):
         self.stops.append(stop)
 
 class Trip(object):
     tripID = 0
-    tripName = ''
     stopSequence = []
 
-    def __init__(self, tripID, tripName, stopSequence):
+
+
+    def __init__(self, tripID):
         self.tripID = tripID
-        self.tripName = tripName
+
+        #self.stopSequence.append(stopSequence)
+    def addStopSequence(self, stopSequence):
         self.stopSequence.append(stopSequence)
 
 class Stop(object):
@@ -28,3 +35,4 @@ class Stop(object):
         self.stopID = stopID
         self.stopName = stopName
 
+print(7)
