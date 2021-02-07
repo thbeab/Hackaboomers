@@ -1,3 +1,6 @@
+import sys
+import copy
+
 class Graph(object):
     nb_vertices = 0
     vertices = []
@@ -47,3 +50,53 @@ class Graph(object):
             print(i, j)
             self.transitlines_matrix[i][j]=lines
             self.adjacency_matrix[i][j]=distance 
+
+    # fuction that calculates penalty from line changes for Dijkstra algorithm
+    def calculate_penalty(self, current_lines, adjacent_lines):
+        intersected_lines = []
+        penalty = 0
+        if((adjacent_lines!=[]) and (current_lines!=[])):
+            for l in current_lines:
+                if l in adjacent_lines:
+                   intersected_lines.append(l)
+        if(intersected_lines==[]):
+            penalty = 5
+            intersected_lines = adjacent_lines
+
+        return [penalty, intersected_lines] 
+            
+    # shortest path from s
+    def modified_dijkstra(self, s):
+        cost = []
+        path = []
+        lines = []
+        unvisited =[]
+
+        for v in range(nb_vertices):
+            cost[v]=sys.maxsize
+            unvisited.append(self.vertices[v])
+
+        cost[self.vertices.index(v)]=0
+         
+        current = copy.deepcopy(s)
+
+        while(unvisited!=[]):
+            for u in unvisited:
+                if(cost[u] < cost[current]):
+                    current=u
+            unvisited.remove(current)
+            
+            for j in range(nb_vertices):
+                if(self.adjacency_matrix[current][j] > 0):
+                    intersected_lines = []
+                    tmp = self.calculate_penalty(lines[self.vertices.index(current)],transitlines_matrix[current][j])
+                    penalty = tmp[1]
+                    intersected_lines = tmp[2]
+                    alternaative_cost = cost[self.vertices.index(current)] +
+                    self.adjacency_matrix[current][j]
+                    
+                    if(alternaative_cost 
+                    
+
+
+
