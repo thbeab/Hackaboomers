@@ -4,10 +4,17 @@ class Graph(object):
     adjacency_matrix = []
     transitlines_matrix = []
 
-    def __init__(self, vertices, adjacency_matrix, transitlines_matrix):
-        self.vertices = vertices
-        self.adjacency_matrix = adjacency_matrix
-        self.transitlines_matrix = transitlines_matrix
+    def __init__(self, vertices, edges):
+
+        for vertex in vertices:
+            self.add_vertex(vertex)
+
+        for edge in edges:
+            v1 = edge[0] 
+            v2 = edge[1]
+            distance = edge[2]
+            lines = edge[3]
+            self.add_edge(v1, v2, distance, lines)
 
     def add_vertex(self, v):
         if(v in self.vertices):
@@ -37,5 +44,6 @@ class Graph(object):
         else:
             i=self.vertices.index(v1)
             j=self.vertices.index(v2)
+            print(i, j)
             self.transitlines_matrix[i][j]=lines
             self.adjacency_matrix[i][j]=distance 
